@@ -44,7 +44,7 @@ function askQuestion() {
   }
   return candidateAnswers;
 }
-
+ 
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
