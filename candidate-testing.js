@@ -18,9 +18,9 @@ let questions = [
 let correctAnswers = [
   "Sally Ride",
   "true",
-  40,
+  "40",
   "Trajectory",
-  3
+  "3"
 ];
 let candidateAnswers = [];
 
@@ -34,10 +34,9 @@ function askForName() {
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-  let candidateAnswers = [];
 
   for (let i = 0; i < questions.length; i++) {
-    let candidateAnswers = input.question(questions[i]);
+    candidateAnswers.push(input.question(questions[i]));
     console.log(`Your Answer: ${candidateAnswers}`);
     console.log(`Correct Answer: ${correctAnswers[i]}\n`);
   
@@ -49,14 +48,30 @@ function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
   // Calculating Grade Percentage (Number of Correct Answers) / (Number of Quiz Questions) * 100
-  let goodAnswer = [];
-  let grade = ((goodAnswer / questions.length) * 100);
   
-  if (String(candidateAnswers) === correctAnswers) {
-    goodAnswer[i++]; 
+  let goodAnswer = 0;
+  
+  for (let i = 0; i < questions.length; i++) {
+    if (candidateAnswers[i] === correctAnswers[i]) {
+      goodAnswer++;
+       
+    }
+    
   }
-  console.log(grade);
+  let grade = ((goodAnswer / questions.length) * 100);
+  let overallGradeMessage = `>>> Overall Grade: ${grade} (${goodAnswer} of ${questions.length} responses correct) <<<`;
+  let statusReportMessagePass = `>>> Status: PASSED <<<`;
+  let statusReportMessageFail = `>>> Status: FAILED <<<`;
+  console.log(overallGradeMessage);
+  
+  if (grade >= 80) {
+    console.log(statusReportMessagePass);
+  } else {
+    console.log(statusReportMessageFail);
+  }
+  
   return grade;
+
 }
 
 function runProgram() {
